@@ -232,6 +232,16 @@ describe('sql connector', function() {
     expect(orderBy).to.eql('ORDER BY `NAME` ASC,`VIP` DESC');
   });
 
+  it('builds order by with empty array', function() {
+    var orderBy = connector.buildOrderBy('customer', []);
+    expect(orderBy).to.eql('');
+  });
+
+  it('builds order by with empty string', function() {
+    var orderBy = connector.buildOrderBy('customer', '');
+    expect(orderBy).to.eql('');
+  });
+
   it('builds fields for columns', function() {
     var fields = connector.buildFields('customer',
       {name: 'John', vip: true, unknown: 'Random'});
